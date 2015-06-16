@@ -35,11 +35,10 @@ module.exports = (grunt) ->
         options:
           alias: ["./build/js/addon.js:addon"]
 
-          # wrapp as Taist addon
+          # wrap as Taist addon
           postBundleCB: (err, src, next) ->
             src = "function init(){var " + src + ";return require(\"addon\")}"
             next err, src
-            return
 
     concat:
       addon:
