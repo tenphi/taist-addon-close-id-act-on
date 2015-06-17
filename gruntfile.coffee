@@ -5,10 +5,15 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-browserify"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks 'grunt-contrib-watch'
-
+  grunt.loadNpmTasks 'grunt-env'
 
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+
+    env:
+      options: {}
+      build:
+        NODE_ENV: process.env.NODE_ENV or 'production'
 
     coffee:
       addon:
@@ -53,15 +58,21 @@ module.exports = (grunt) ->
       tasks: ['build']
 
   grunt.registerTask "default", [
-    "build"
+    "devbuild"
     "watch"
   ]
 
-  grunt.registerTask "build", [
+  grunt.registerTask "devbuild", [
     "coffee:addon"
     "copy:addon"
     "browserify:addon"
     "concat:addon"
   ]
 
-  return
+  grunt.registerTask "build", [
+    "env:build"
+    "coffee:addon"
+    "copy:addon"
+    "browserify:addon"
+    "concat:addon"
+  ]

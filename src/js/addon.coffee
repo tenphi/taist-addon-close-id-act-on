@@ -1,13 +1,17 @@
+React = require 'react'
+Q = require 'q'
+
+extend = require 'react/lib/Object.assign'
+insertAfter = require './helpers/insertAfter'
+
+actOnFields = React.createFactory require('./close.io/ui/actOnFields')
+
 addonEntry =
-  start: (_taistApi, entryPoint) ->
-    _taistApi.log 'Addon started'
+  start: (@api, entryPoint) ->
+    DOMObserver = require './helpers/domObserver'
+    @elementObserver = new DOMObserver()
 
-    require('./greetings/hello') _taistApi
-
-    _taistApi.companyData.set 'key', 'value ' + new Date, ->
-      console.log 'company data saved'
-
-    _taistApi.companyData.get 'key', (a, b) ->
-      console.log 'received from the server', a, b
+    @elementObserver.waitElement 'div.lead-sidebar', (sidebar) ->
+#      React.render { fields: {'Lead Score': 'Very big!'} }, sidebar
 
 module.exports = addonEntry

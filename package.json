@@ -1,8 +1,8 @@
 {
-  "name": "taist-addon-bootstrap",
+  "name": "taist-addon-close-io-act-on",
   "version": "0.0.1",
-  "author": "Vladimir Rybakov",
-  "description": "Taist bootstrap addon",
+  "author": "Andrey Yamanov",
+  "description": "Taist addon for integration between Close.io and Act-on",
   "dependencies": {
     "browserify": "~4.1.5",
     "grunt": "~0.4.0",
@@ -10,6 +10,9 @@
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-watch": "*",
+    "grunt-env": "^0.4.4",
+    "q": "^1.3.0",
+    "react": "^0.13.2"
   }
 }
