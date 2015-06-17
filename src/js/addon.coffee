@@ -11,7 +11,10 @@ addonEntry =
     DOMObserver = require './helpers/domObserver'
     @elementObserver = new DOMObserver()
 
-    @elementObserver.waitElement 'div.lead-sidebar', (sidebar) ->
-#      React.render { fields: {'Lead Score': 'Very big!'} }, sidebar
+    @elementObserver.waitElement '.custom-fields', (customFieldsEl) ->
+      div = document.createElement 'div'
+      div.className = 'taist'
+      insertAfter div, customFieldsEl
+      React.render actOnFields({ fields: {'Lead Score': 'Very big!'} }), div
 
 module.exports = addonEntry

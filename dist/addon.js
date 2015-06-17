@@ -9,9 +9,9 @@ actOnFields = React.createClass({
   render: function() {
     var field, value;
     return div({
-      "class": 'act-on-fields'
+      className: 'act-on-fields custom-fields'
     }, h2({}, 'Act-On fields'), ul({
-      "class": 'act-on-fields-list list'
+      className: 'custom-fields-list list'
     }, (function() {
       var ref1, results;
       ref1 = this.props.fields;
@@ -19,12 +19,14 @@ actOnFields = React.createClass({
       for (field in ref1) {
         value = ref1[field];
         results.push(li({
-          "class": 'editable-model-view'
+          className: 'editable-model-view'
         }, div({
-          "class": 'key'
-        }, field), div({
-          "class": 'value'
-        }, value)));
+          className: 'custom-field'
+        }, div({
+          className: 'key'
+        }, field + ':'), div({
+          className: 'value'
+        }, value))));
       }
       return results;
     }).call(this)));
@@ -21885,7 +21887,17 @@ addonEntry = {
     this.api = api;
     DOMObserver = require('./helpers/domObserver');
     this.elementObserver = new DOMObserver();
-    return this.elementObserver.waitElement('div.lead-sidebar', function(sidebar) {});
+    return this.elementObserver.waitElement('.custom-fields', function(customFieldsEl) {
+      var div;
+      div = document.createElement('div');
+      div.className = 'taist';
+      insertAfter(div, customFieldsEl);
+      return React.render(actOnFields({
+        fields: {
+          'Lead Score': 'Very big!'
+        }
+      }), div);
+    });
   }
 };
 

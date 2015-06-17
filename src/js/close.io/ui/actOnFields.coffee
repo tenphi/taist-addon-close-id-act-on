@@ -4,12 +4,13 @@ React = require 'react'
 
 actOnFields = React.createClass
   render: ->
-    div { class: 'act-on-fields' },
+    div { className: 'act-on-fields custom-fields' },
       h2 {}, 'Act-On fields'
-      ul { class: 'act-on-fields-list list' },
+      ul { className: 'custom-fields-list list' },
         for field, value of this.props.fields
-          li { class: 'editable-model-view' },
-            div { class: 'key' }, field
-            div { class: 'value' }, value
+          li { className: 'editable-model-view' },
+            div { className: 'custom-field' },
+              div { className: 'key' }, field + ':'
+              div { className: 'value' }, value
 
 module.exports = actOnFields
