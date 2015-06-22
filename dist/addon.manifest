@@ -4,5 +4,5 @@
   "siteName": "Close.io + Act-On",
   "js": "addon.js",
   "shortDescription": "Integration between Close.io and Act-On",
-  "siteRegexp": "close\\.io"
+  "siteRegexp": "(close\\.io|act-on\\.com)"
 }
